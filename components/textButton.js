@@ -1,9 +1,9 @@
 import React from 'react'
 import {StyleSheet, TouchableOpacity, Text, View } from 'react-native'
 
-export default function TextButton() {
+export default function TextButton({onPress}) {
     return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onPress}>
             <View>
             <Text style={styles.button}>Register</Text>
             </View>

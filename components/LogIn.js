@@ -1,13 +1,16 @@
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, Alert } from 'react-native';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import FlatButton from './button'
 import TextButton from './textButton'
+import axios from 'axios';
+import {FIREBASE_API_KEY} from './firebase_key.js'
 
 export default function LogIn({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isValid, setValid] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
 
   function emailHandler(enteredEmail) {
     setEmail(enteredEmail);
@@ -26,8 +29,32 @@ export default function LogIn({ navigation }) {
     setValid(isValid);
   }, [email, password]);
 
-  function onPressHandler() {
+  async function loginHandler(email, password) {
+    try {
+    const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + FIREBASE_API_KEY,
+    {
+        email: email,
+        password: password,
+        returnSecureToken: true
+    });
+    setAuthenticated(true);
+  } catch (error) {
+    Alert.alert(error.message) 
+    setAuthenticated(false);
+  }
+} 
+
+  function onPressHandler1() {
+    loginHandler(email, password);
+    if (authenticated == true) {
     navigation.navigate('Main Page');
+    } else {
+      navigation.navigate('Login Page');
+    }
+  }
+
+  function onPressHandler2() {
+    navigation.navigate('Register Page');
   }
 
     return (
@@ -35,8 +62,8 @@ export default function LogIn({ navigation }) {
           <View style={styles.textFields}>
           <TextInput style={styles.textInput} placeholder="Email address" onChangeText={emailHandler}/>
           <TextInput style={styles.textInput} placeholder="Password" onChangeText={passwordHandler}/>
-          <FlatButton disabled={!isValid} onPress={onPressHandler}></FlatButton>
-          <TextButton></TextButton>
+          <FlatButton disabled={!isValid} onPress={onPressHandler1}></FlatButton>
+          <TextButton onPress={onPressHandler2}></TextButton>
           </View>
         </View>
     );

@@ -1,8 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, TextInput, Image } from 'react-native';
-import Register from './Register';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack'; 
+import Register from '../components/Register';
 
 export default function RegisterPage({ navigation }) {
   return (

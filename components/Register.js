@@ -1,30 +1,32 @@
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, Alert } from 'react-native';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import FlatButton from './button'
-import TextButton from './textButton'
+import RegisterButton from './RegisterButton'
+import { auth } from './config.js'
+import { db } from './config.js'
+import {ref,set, update, onValue} from "firebase/database"
 
 export default function Register({ navigation }) {
-  const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [url, setURL] = useState('');
   const [isValid, setValid] = useState(false);
 
   function nameHandler(enteredName) {
-    setName(enteredName);
+    setUsername(enteredName);
   }
-  
-  function usernameHandler(enteredUsername) {
-    setUsername(enteredUsername);
-  }
-  
+
   function emailHandler(enteredEmail) {
     setEmail(enteredEmail);
   }
 
   function passwordHandler(enteredPassword) {
     setPassword(enteredPassword);
+  }
+
+  function urlHandler(enteredURL) {
+    setURL(enteredURL);
   }
 
   const validate = () => {
@@ -36,18 +38,35 @@ export default function Register({ navigation }) {
     setValid(isValid);
   }, [email, password]);
 
-  function onPressHandler() {
-    console.log(name);
+  function registerHandler(email, password) {
+    auth.createUserWithEmailAndPassword(email, password).then(function() {
+    Alert.alert('User registered successfully!')
+    const user = auth.currentUser;
+    user.updateProfile({
+    displayName: username}).catch(error => {
+      console.log('error',error);
+    })
+    set(ref(db, 'users/' + username),{
+      username: username,
+      email: email,
+      photoURL: url,
+      retaurant: ""
+  }).then(function() { console.log("User successfully entered in database!")}).then(navigation.navigate('Login Page')).catch(error => console.log(error))
+}).catch(error => Alert.alert(error.message))
+}
+
+    function onPressHandler() {
+    registerHandler(email, password);
   }
 
     return (
         <View style={styles.register}>
           <View style={styles.textFields}>
-          <TextInput style={styles.textInput} placeholder="Name" onChangeText={nameHandler}/>
-          <TextInput style={styles.textInput} placeholder="UserName" onChangeText={usernameHandler}/>
+          <TextInput style={styles.textInput} placeholder="Username" onChangeText={nameHandler}/>
           <TextInput style={styles.textInput} placeholder="Email address" onChangeText={emailHandler}/>
           <TextInput style={styles.textInput} placeholder="Password" onChangeText={passwordHandler}/>
-          <FlatButton disabled={!isValid} onPress={onPressHandler}></FlatButton>
+          <TextInput style={styles.textInput} placeholder="Photo URL" onChangeText={urlHandler}/>
+          <RegisterButton disabled={!isValid} onPress={onPressHandler}></RegisterButton>
           </View>
         </View>
     );
