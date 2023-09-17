@@ -1,7 +1,11 @@
-import { StyleSheet, Text, View, Button, Image, TouchableOpacity, Loading, FlatList, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Button, Image, TouchableOpacity, Loading, FlatList, ScrollView, Alert } from 'react-native';
 import { useState, useEffect } from "react";
 import Review from './Review';
 import {googleAPIKey} from './firebase_key.js'
+import { auth } from './config.js'
+import { db } from './config.js'
+import {ref, update} from "firebase/database"
+import RegisterButton from './RegisterButton'
 
 export default function Details({route, navigation}) {
 
@@ -81,18 +85,26 @@ if (details.length) {
     }}/>
 }
 
+function updateHandler() {
+  console.log("hello");
+  const user = auth.currentUser;
+  console.log(username);
+  update(ref(db, 'users/' + user.displayName),{
+    retaurant: placeId
+  }).then(function() { console.log("User successfully updated the database!")}).catch(error => Alert.alert('error',error.message))
+}
+
 return (
 <ScrollView>
 <View>{placeName}</View>
 <View>{placeRating}</View>
 <View>{placeUserRatings}</View>
-<Button title="Going"></Button>
+<Button title="Going" onPress={updateHandler}></Button>
 <Text style={styles.header}>Reviews</Text>
 <View>{flatList}</View>
 </ScrollView>
 )
 }
-
 
     const styles = StyleSheet.create({
       title: {
