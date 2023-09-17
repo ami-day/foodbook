@@ -52,7 +52,7 @@ export default function Register({ navigation }) {
       photoURL: url,
       retaurant: ""
   }).then(function() { console.log("User successfully entered in database!")}).then(navigation.navigate('Login Page')).catch(error => console.log(error))
-}).catch(error => Alert.alert(error.message))
+}).catch(error => Alert.alert('Error',error.message))
 }
 
     function onPressHandler() {

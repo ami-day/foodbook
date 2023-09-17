@@ -44,7 +44,7 @@ export default function LogIn({ navigation }) {
   }
 } 
 
-  function onPressHandler1() {
+  function onPressHandler() {
     loginHandler(email, password);
     if (authenticated == true) {
     navigation.navigate('Main Page');
@@ -53,17 +53,12 @@ export default function LogIn({ navigation }) {
     }
   }
 
-  function onPressHandler2() {
-    navigation.navigate('Register Page');
-  }
-
     return (
         <View style={styles.login}>
           <View style={styles.textFields}>
           <TextInput style={styles.textInput} placeholder="Email address" onChangeText={emailHandler}/>
           <TextInput style={styles.textInput} placeholder="Password" onChangeText={passwordHandler}/>
-          <FlatButton disabled={!isValid} onPress={onPressHandler1}></FlatButton>
-          <TextButton onPress={onPressHandler2}></TextButton>
+          <FlatButton disabled={!isValid} onPress={onPressHandler}></FlatButton>
           </View>
         </View>
     );

@@ -1,8 +1,7 @@
 import { StyleSheet, Text, View, Button, Image, TouchableOpacity, Loading, FlatList, ScrollView } from 'react-native';
 import { useState, useEffect } from "react";
 import Review from './Review';
-
-export const googleAPIKey = 'AIzaSyA2uy0vc2gwvzoGNvZ7lWPhwgRO8wevGnw';
+import {googleAPIKey} from './firebase_key.js'
 
 export default function Details({route, navigation}) {
 

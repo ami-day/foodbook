@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View, Button, Image, FlatList} from 'react-native';
 import { useState, useEffect } from "react";
 import Restaurant from './Restaurant';
+import {googleAPIKey} from './firebase_key.js'
 
-export const googleAPIKey = 'AIzaSyA2uy0vc2gwvzoGNvZ7lWPhwgRO8wevGnw';
 export const placeType = 'restaurant';
 
 export default function Restaurants({ route, navigation }) {
