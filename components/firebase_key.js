@@ -1,2 +1,0 @@
-const FIREBASE_API_KEY = 'AIzaSyB1YbGfa-9NfPcZ19CPgnSWmYzisq_HDbs'
-export { FIREBASE_API_KEY };
