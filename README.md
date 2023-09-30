@@ -8,7 +8,7 @@ Foodbook is a personal project that I have been working on as a hobby in order t
 <p align="center">It is a social media app which makes use of Google Places API
 to find restaurants nearby, provide details on those restaurants (e.g. rating, reviews) and list which restaurants friends are going to.</p>
 
-<p align="center">A significant part of this work has involved self-learning a new language (JavaScript) and framework (React Native), in addition to researching and implementing Firebase Authentication and a RealTime Database.</p>
+<p align="center">A significant part of this work has involved self-learning a new language (JavaScript) and framework (React Native), in addition to researching and implementing Firebase Authentication and RealTime Database.</p>
 
 ## Tech stack
 
