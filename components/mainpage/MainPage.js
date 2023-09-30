@@ -37,7 +37,7 @@ export default function MainPage({ navigation }) {
     <View/>
     <View style={{padding: 20}}></View>
     <View>
-    <Image source={require('../assets/eating.jpg')}
+    <Image source={require('../../assets/eating.jpg')}
        style={{width: 400, height: 400}} />
     </View>
     </View>

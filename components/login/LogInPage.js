@@ -8,7 +8,7 @@ export default function LogInPage({ navigation }) {
     <StatusBar style="light" />
     <View style={styles.container}>
     <View style={styles.header}>
-    <Image style={{height: 75, width: 75}} source={require('../assets/foodbook1.jpg')}/>
+    <Image style={{height: 75, width: 75}} source={require('../../assets/foodbook1.jpg')}/>
     <Text style={styles.facebook}>foodbook</Text>
     </View>
     <LogIn navigation={navigation}></LogIn>
