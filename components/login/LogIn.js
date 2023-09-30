@@ -1,16 +1,16 @@
-import { StyleSheet, Text, View, Button, TextInput, Alert } from 'react-native';
+import { StyleSheet, View, TextInput, Alert } from 'react-native';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import FlatButton from './button'
 import TextButton from './textButton'
-import axios from 'axios';
-import {FIREBASE_API_KEY} from './firebase_key.js'
+import { auth } from '../config/config.js'
 
 export default function LogIn({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isValid, setValid] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
 
   function emailHandler(enteredEmail) {
     setEmail(enteredEmail);
@@ -29,20 +29,16 @@ export default function LogIn({ navigation }) {
     setValid(isValid);
   }, [email, password]);
 
-  async function loginHandler(email, password) {
-    try {
-    const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + FIREBASE_API_KEY,
-    {
-        email: email,
-        password: password,
-        returnSecureToken: true
-    });
+  function loginHandler(email, password) {
+    auth.signInWithEmailAndPassword(email, password).then(function() {
+    Alert.alert('User logged in successfully!')
     setAuthenticated(true);
-  } catch (error) {
-    Alert.alert(error.message) 
-    setAuthenticated(false);
+    setUser(auth.currentUser);
+  }).catch((error) => {
+  Alert.alert("Error:", error.message)
+  setAuthenticated(false);
+})
   }
-} 
 
   function onPressHandler() {
     loginHandler(email, password);
@@ -59,6 +55,7 @@ export default function LogIn({ navigation }) {
           <TextInput style={styles.textInput} placeholder="Email address" onChangeText={emailHandler}/>
           <TextInput style={styles.textInput} placeholder="Password" onChangeText={passwordHandler}/>
           <FlatButton disabled={!isValid} onPress={onPressHandler}></FlatButton>
+          <TextButton></TextButton>
           </View>
         </View>
     );

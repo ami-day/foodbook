@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View, Button, Image, FlatList} from 'react-native';
+import { StyleSheet, View, FlatList} from 'react-native';
 import { useState, useEffect } from "react";
 import Restaurant from './Restaurant';
-import {googleAPIKey} from './firebase_key.js'
+import {googleAPIKey} from '../config/firebase_key.js'
 
 export const placeType = 'restaurant';
 

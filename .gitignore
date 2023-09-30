@@ -34,6 +34,6 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
-components/firebase_key.js
-components/config.js
+components/config/firebase_key.js
+components/config/config.js
 

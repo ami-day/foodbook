@@ -1,15 +1,14 @@
 import { StyleSheet, Text, View, Button, Image, TouchableOpacity, Loading, FlatList, ScrollView, Alert } from 'react-native';
 import { useState, useEffect } from "react";
 import Review from './Review';
-import {googleAPIKey} from './firebase_key.js'
-import { auth } from './config.js'
-import { db } from './config.js'
+import {googleAPIKey} from '../config/firebase_key.js'
+import { auth } from '../config/config.js'
+import { db } from '../config/config.js'
 import {ref, update} from "firebase/database"
-import RegisterButton from './RegisterButton'
 
 export default function Details({route, navigation}) {
 
-  const { placeId } = route.params;
+  const { placeId, placeName } = route.params;
 
   const [details, setDetails] = useState([]);
 
@@ -48,7 +47,7 @@ function renderItem(itemData) {
 const DATA = [{'author_name': 'No reviews found', 'rating': 'No reviews found', 'relative_time_description': 'No reviews found', 'text': 'No reviews found.'}]
 
 if (details.length) {
-  placeName = <Text style={styles.title}>{details[0]['name']}</Text>
+  placeName2 = <Text style={styles.title}>{details[0]['name']}</Text>
   placeRating = <Text style={styles.header}>Average Rating: {details[0]['rating']}</Text>
   placeUserRatings = <Text style={styles.header}>Number User Ratings: {details[0]['user_ratings_total']}</Text>
   const review_info = [];
@@ -71,7 +70,7 @@ if (details.length) {
     flexGrow: 1,
     }}/>
 } else {
-  placeName = <Text style={styles.title}>Error loading restaurants data.</Text>
+  placeName2 = <Text style={styles.title}>Error loading restaurants data.</Text>
   placeRating = <Text style={styles.title}>Error loading restaurants data.</Text>
   placeUserRatings = <Text style={styles.title}>Error loading restaurants data.</Text>
   flatList = <FlatList
@@ -88,15 +87,15 @@ if (details.length) {
 function updateHandler() {
   console.log("hello");
   const user = auth.currentUser;
-  console.log(username);
+  console.log(user);
   update(ref(db, 'users/' + user.displayName),{
-    retaurant: placeId
+    retaurant: placeName
   }).then(function() { console.log("User successfully updated the database!")}).catch(error => Alert.alert('error',error.message))
 }
 
 return (
 <ScrollView>
-<View>{placeName}</View>
+<View>{placeName2}</View>
 <View>{placeRating}</View>
 <View>{placeUserRatings}</View>
 <Button title="Going" onPress={updateHandler}></Button>

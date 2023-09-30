@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View, Button, TextInput, Alert } from 'react-native';
+import { StyleSheet, View, TextInput, Alert } from 'react-native';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import RegisterButton from './RegisterButton'
-import { auth } from './config.js'
-import { db } from './config.js'
-import {ref,set, update, onValue} from "firebase/database"
+import { auth } from '../config/config.js'
+import { db } from '../config/config.js'
+import {ref,set} from "firebase/database"
 
 export default function Register({ navigation }) {
   const [username, setUsername] = useState('');

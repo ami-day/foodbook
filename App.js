@@ -1,10 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, TextInput, Image } from 'react-native';
-import LogInPage from './components/LogInPage';
-import RegisterPage from './components/RegisterPage';
-import MainPage from './components/MainPage';
-import Restaurants from './components/Restaurants';
-import Details from './components/Details';
+import LogInPage from './components/login/LogInPage';
+import RegisterPage from './components/register/RegisterPage';
+import MainPage from './components/mainpage/MainPage';
+import Restaurants from './components/restaurants/Restaurants';
+import Details from './components/restaurants/Details';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'; 
 

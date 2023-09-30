@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button, Image, FlatList, ScrollView} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 export default function Review({author_name, rating, relative_time_description, text}) {
     return (

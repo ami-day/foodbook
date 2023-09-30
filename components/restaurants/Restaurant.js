@@ -1,12 +1,11 @@
-import { StyleSheet, Text, View, Button, Image, TouchableOpacity } from 'react-native';
-import { useState, useEffect } from "react";
-
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
 export default function Restaurant({placeId, placeName, placePhotoUrl, navigation}) {
 
   function onPress() {
     navigation.navigate('Details Page', {
-      placeId: placeId
+      placeId: placeId,
+      placeName: placeName
     })
   };
 

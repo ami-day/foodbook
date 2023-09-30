@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, TextInput, Image } from 'react-native';
-import LogIn from '../components/LogIn';
+import { StyleSheet, Text, View, Image } from 'react-native';
+import Register from './Register';
 
-export default function LogInPage({ navigation }) {
+export default function RegisterPage({ navigation }) {
   return (
     <>
     <StatusBar style="light" />
@@ -11,7 +11,7 @@ export default function LogInPage({ navigation }) {
     <Image style={{height: 75, width: 75}} source={require('../assets/foodbook1.jpg')}/>
     <Text style={styles.facebook}>foodbook</Text>
     </View>
-    <LogIn navigation={navigation}></LogIn>
+    <Register navigation={navigation}></Register>
     </View>
     </>
   );
