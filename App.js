@@ -4,6 +4,7 @@ import RegisterPage from './components/register/RegisterPage';
 import MainPage from './components/mainpage/MainPage';
 import Restaurants from './components/restaurants/Restaurants';
 import Details from './components/restaurants/Details';
+import Friends from './components/friends/Friends';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'; 
 
@@ -19,6 +20,7 @@ export default function App() {
         <Stack.Screen name="Main Page" component={MainPage}/>
         <Stack.Screen name="Restaurants Page" component={Restaurants}/>
         <Stack.Screen name="Details Page" component={Details}/>
+        <Stack.Screen name="Friends Page" component={Friends}/>
       </Stack.Navigator>
     </NavigationContainer>
     </>

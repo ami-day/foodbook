@@ -50,7 +50,7 @@ export default function Register({ navigation }) {
       username: username,
       email: email,
       photoURL: url,
-      retaurant: ""
+      restaurant: ""
   }).then(function() { console.log("User successfully entered in database!")}).then(navigation.navigate('Login Page')).catch(error => console.log(error))
 }).catch(error => Alert.alert('Error',error.message))
 }

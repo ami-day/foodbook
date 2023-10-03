@@ -89,7 +89,9 @@ function updateHandler() {
   const user = auth.currentUser;
   console.log(user);
   update(ref(db, 'users/' + user.displayName),{
-    retaurant: placeName
+    email: user.email,
+    username: user.displayName,
+    restaurant: placeName
   }).then(function() { console.log("User successfully updated the database!")}).catch(error => Alert.alert('error',error.message))
 }
 

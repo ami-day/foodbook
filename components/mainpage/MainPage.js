@@ -27,13 +27,17 @@ export default function MainPage({ navigation }) {
     });
   }
 
+  function friendsHandler() {
+    navigation.navigate('Friends Page');
+  }
+
   return (
     <View style={styles.container}>
       <Button title="Get Location" onPress={setCurrentLocation}/>
       <Text>latitude = {latitude}</Text>
       <Text>longitude = {longitude}</Text>
       <Button title="Find Restaurants" onPress={onPressHandler}/>
-      <Button title="Find Friends"/>
+      <Button title="Find Friends" onPress={friendsHandler}/>
     <View/>
     <View style={{padding: 20}}></View>
     <View>
